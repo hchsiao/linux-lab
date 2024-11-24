@@ -2,8 +2,7 @@
 
 mkdir -p build
 cd build
-#export PATH="$(pwd)/riscv/bin:$PATH"
-export PATH="$(pwd)/../semu/buildroot/output/host/bin:$PATH"
+export PATH="$(pwd)/riscv32-buildroot-linux-gnu/bin:$PATH"
 
 if [ ! -f "busybox-1.36.1.tar.bz2" ]; then
   wget https://busybox.net/downloads/busybox-1.36.1.tar.bz2
