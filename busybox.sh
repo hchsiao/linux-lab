@@ -2,6 +2,8 @@
 
 mkdir -p build
 cd build
+#export PATH="$(pwd)/riscv/bin:$PATH"
+export PATH="$(pwd)/../semu/buildroot/output/host/bin:$PATH"
 
 if [ ! -f "busybox-1.36.1.tar.bz2" ]; then
   wget https://busybox.net/downloads/busybox-1.36.1.tar.bz2
@@ -9,7 +11,9 @@ if [ ! -f "busybox-1.36.1.tar.bz2" ]; then
 fi
 cd busybox-1.36.1
 mkdir -p o
-make O=o ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- defconfig
+export CROSS_COMPILE=riscv32-buildroot-linux-gnu-
+export ARCH=riscv
+make O=o defconfig
 cp ../../busybox.config o/.config
-make O=o ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- -j $(expr $(nproc) / 2)
-make O=o ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- install CONFIG_PREFIX=rootfs
+make O=o -j $(expr $(nproc) / 2)
+make O=o install CONFIG_PREFIX=rootfs
