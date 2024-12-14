@@ -10,4 +10,5 @@ fi
 cd linux-6.11-rc7
 make O=o ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- defconfig
 cp ../../linux.config o/.config
-make O=o ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- -j $(expr $(proc) / 2)
+make O=o ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- -j $(expr $(nproc) / 2)
+make O=o ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- Image dtbs
